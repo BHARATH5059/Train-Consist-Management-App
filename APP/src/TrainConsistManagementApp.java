@@ -5,9 +5,9 @@ class RoomInventory {
 
     public RoomInventory() {
         inventory = new HashMap<>();
-        inventory.put("Single", 10);
-        inventory.put("Double", 5);
-        inventory.put("Suite", 2);
+        inventory.put("Single ", 10);
+        inventory.put("Double ", 5);
+        inventory.put("Suite ", 2);
     }
 
     public int getAvailability(String roomType) {
