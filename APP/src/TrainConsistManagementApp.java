@@ -23,6 +23,7 @@ public class TrainConsistManagementApp {
                 .collect(Collectors.toList());
     }
 
+public class TrainConsistManagemaentApp {
     public static void main(String[] args) {
 
         List<Bogie> bogies = new ArrayList<>();
