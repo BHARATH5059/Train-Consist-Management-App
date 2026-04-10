@@ -18,7 +18,7 @@ class Bogie {
     }
 }
 
-public class TrainConsistManagementApp {
+public class TrainConsistManagemaentApp {
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
 
