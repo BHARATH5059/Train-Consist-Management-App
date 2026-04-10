@@ -1,23 +1,44 @@
 import java.util.*;
 
+class RoomInventory {
+    private HashMap<String, Integer> inventory;
+
+    public RoomInventory() {
+        inventory = new HashMap<>();
+        inventory.put("Single", 10);
+        inventory.put("Double", 5);
+        inventory.put("Suite", 2);
+    }
+
+    public int getAvailability(String roomType) {
+        return inventory.getOrDefault(roomType, 0);
+    }
+
+    public void updateAvailability(String roomType, int count) {
+        inventory.put(roomType, count);
+    }
+
+    public void displayInventory() {
+        System.out.println("Current Room Inventory:");
+        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
+    }
+}
+
 public class TrainConsistManagementApp {
     public static void main(String[] args) {
-        System.out.println("=== Train Consist Management App ===");
+        System.out.println("=== Book My Stay App ===");
 
-        List<String> passengerBogies = new ArrayList<>();
+        RoomInventory inventory = new RoomInventory();
 
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        inventory.displayInventory();
 
-        System.out.println("Passenger Bogies: " + passengerBogies);
+        inventory.updateAvailability("Single", 8);
 
-        passengerBogies.remove("AC Chair");
+        System.out.println("After Update:");
+        inventory.displayInventory();
 
-        System.out.println("After Removal: " + passengerBogies);
-
-        System.out.println("Sleeper Exists: " + passengerBogies.contains("Sleeper"));
-
-        System.out.println("Final Bogie List: " + passengerBogies);
+        System.out.println("Available Double Rooms: " + inventory.getAvailability("Double"));
     }
 }
