@@ -24,6 +24,11 @@ public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
+        System.out.println("=== Train Consist Management App ===");
+
+        // -----------------------------
+        // UC9: Grouping Bogies
+        // -----------------------------
         List<Bogie> bogies = new ArrayList<>();
 
         bogies.add(new Bogie("Sleeper", 72));
@@ -34,17 +39,18 @@ public class TrainConsistManagementApp {
 
         Map<String, List<Bogie>> grouped = groupBogiesByType(bogies);
 
-        System.out.println("Grouped Bogies by Type:\n");
+        System.out.println("\nGrouped Bogies by Type:\n");
 
         for (Map.Entry<String, List<Bogie>> entry : grouped.entrySet()) {
             System.out.println(entry.getKey() + ":");
             for (Bogie b : entry.getValue()) {
                 System.out.println("  " + b);
             }
-public class TrainConsistManagementApp {
-    public static void main(String[] args) {
-        System.out.println("=== Train Consist Management App ===");
+        }
 
+        // -----------------------------
+        // UC: LinkedHashSet Formation
+        // -----------------------------
         LinkedHashSet<String> formation = new LinkedHashSet<>();
 
         formation.add("Engine");
@@ -52,9 +58,10 @@ public class TrainConsistManagementApp {
         formation.add("Cargo");
         formation.add("Guard");
 
+        // duplicate ignored
         formation.add("Sleeper");
 
-        System.out.println("Train Formation:");
+        System.out.println("\nTrain Formation:");
         for (String bogie : formation) {
             System.out.println(bogie);
         }
