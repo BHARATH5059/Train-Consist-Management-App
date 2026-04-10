@@ -5,6 +5,12 @@ public class TrainConsistManagemaentApp {
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
 
+    public RoomInventory() {
+        inventory = new HashMap<>();
+        inventory.put("Single ", 10);
+        inventory.put("Double ", 5);
+        inventory.put("Suite ", 2);
+    }
         HashMap<String, Integer> bogieCapacity = new HashMap<>();
 
         bogieCapacity.put("Sleeper", 72);
