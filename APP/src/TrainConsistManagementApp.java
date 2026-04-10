@@ -1,7 +1,9 @@
 import java.util.*;
+import java.util.stream.*;
 
-class RoomInventory {
-    private HashMap<String, Integer> inventory;
+public class TrainConsistManagemaentApp {
+    public static void main(String[] args) {
+        System.out.println("=== Train Consist Management App ===");
 
     public RoomInventory() {
         inventory = new HashMap<>();
@@ -9,36 +11,71 @@ class RoomInventory {
         inventory.put("Double ", 5);
         inventory.put("Suite ", 2);
     }
+        HashMap<String, Integer> bogieCapacity = new HashMap<>();
 
-    public int getAvailability(String roomType) {
-        return inventory.getOrDefault(roomType, 0);
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 56);
+        bogieCapacity.put("First Class", 40);
+
+        System.out.println("Bogie Capacity Details:");
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+class Bogie {
+    String type;
+    int capacity;
+
+    Bogie(String type, int capacity) {
+        this.type = type;
+        this.capacity = capacity;
     }
 
-    public void updateAvailability(String roomType, int count) {
-        inventory.put(roomType, count);
-    }
-
-    public void displayInventory() {
-        System.out.println("Current Room Inventory:");
-        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-        }
+    public String toString() {
+        return type + " | Capacity: " + capacity;
     }
 }
 
 public class TrainConsistManagementApp {
+
+    public static Map<String, List<Bogie>> groupBogiesByType(List<Bogie> bogies) {
+        return bogies.stream()
+                .collect(Collectors.groupingBy(b -> b.type));
+    }
+
     public static void main(String[] args) {
-        System.out.println("=== Book My Stay App ===");
 
-        RoomInventory inventory = new RoomInventory();
+        List<Bogie> bogies = new ArrayList<>();
 
-        inventory.displayInventory();
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 50));
+        bogies.add(new Bogie("Sleeper", 80));
+        bogies.add(new Bogie("AC Chair", 70));
 
-        inventory.updateAvailability("Single", 8);
+        Map<String, List<Bogie>> grouped = groupBogiesByType(bogies);
 
-        System.out.println("After Update:");
-        inventory.displayInventory();
+        System.out.println("Grouped Bogies by Type:\n");
 
-        System.out.println("Available Double Rooms: " + inventory.getAvailability("Double"));
+        for (Map.Entry<String, List<Bogie>> entry : grouped.entrySet()) {
+            System.out.println(entry.getKey() + ":");
+            for (Bogie b : entry.getValue()) {
+                System.out.println("  " + b);
+            }
+public class TrainConsistManagementApp {
+    public static void main(String[] args) {
+        System.out.println("=== Train Consist Management App ===");
+
+        LinkedHashSet<String> formation = new LinkedHashSet<>();
+
+        formation.add("Engine");
+        formation.add("Sleeper");
+        formation.add("Cargo");
+        formation.add("Guard");
+
+        formation.add("Sleeper");
+
+        System.out.println("Train Formation:");
+        for (String bogie : formation) {
+            System.out.println(bogie);
+        }
     }
 }
