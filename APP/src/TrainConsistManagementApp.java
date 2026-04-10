@@ -1,6 +1,41 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+public class TrainConsistManagementApp {
+
+    public static boolean isValidTrainID(String trainId) {
+        Pattern pattern = Pattern.compile("TRN-\\d{4}");
+        Matcher matcher = pattern.matcher(trainId);
+        return matcher.matches();
+    }
+
+    public static boolean isValidCargoCode(String cargoCode) {
+        Pattern pattern = Pattern.compile("PET-[A-Z]{2}");
+        Matcher matcher = pattern.matcher(cargoCode);
+        return matcher.matches();
 import java.util.*;
 import java.util.stream.*;
 
+public class TrainConsistManagemaentApp {
+    public static void main(String[] args) {
+        System.out.println("=== Train Consist Management App ===");
+
+    public RoomInventory() {
+        inventory = new HashMap<>();
+        inventory.put("Single ", 10);
+        inventory.put("Double ", 5);
+        inventory.put("Suite ", 2);
+    }
+        HashMap<String, Integer> bogieCapacity = new HashMap<>();
+
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 56);
+        bogieCapacity.put("First Class", 40);
+
+        System.out.println("Bogie Capacity Details:");
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
 class Bogie {
     String type;
     int capacity;
@@ -13,8 +48,30 @@ class Bogie {
     public String toString() {
         return type + " | Capacity: " + capacity;
     }
-}
 
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Train ID: ");
+        String trainId = scanner.nextLine();
+
+        System.out.print("Enter Cargo Code: ");
+        String cargoCode = scanner.nextLine();
+
+        if (isValidTrainID(trainId)) {
+            System.out.println("Valid Train ID");
+        } else {
+            System.out.println("Invalid Train ID");
+        }
+
+        if (isValidCargoCode(cargoCode)) {
+            System.out.println("Valid Cargo Code  ");
+        } else {
+            System.out.println("Invalid Cargo Code  ");
+        }
+
+        scanner.close();
 public class TrainConsistManagementApp {
 
     public static Map<String, List<Bogie>> groupBogiesByType(List<Bogie> bogies) {
