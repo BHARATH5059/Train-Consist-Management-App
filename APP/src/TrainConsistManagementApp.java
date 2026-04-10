@@ -1,40 +1,43 @@
-import java.util.*;
-import java.util.stream.*;
-
-class Bogie {
-    String type;
-    int capacity;
-
-    Bogie(String type, int capacity) {
-        this.type = type;
-        this.capacity = capacity;
-    }
-
-    public String toString() {
-        return type + " | Capacity: " + capacity;
-    }
-}
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class TrainConsistManagementApp {
 
-    public static int calculateTotalCapacity(List<Bogie> bogies) {
-        return bogies.stream()
-                .map(b -> b.capacity)
-                .reduce(0, Integer::sum);
+    public static boolean isValidTrainID(String trainId) {
+        Pattern pattern = Pattern.compile("TRN-\\d{4}");
+        Matcher matcher = pattern.matcher(trainId);
+        return matcher.matches();
+    }
+
+    public static boolean isValidCargoCode(String cargoCode) {
+        Pattern pattern = Pattern.compile("PET-[A-Z]{2}");
+        Matcher matcher = pattern.matcher(cargoCode);
+        return matcher.matches();
     }
 
     public static void main(String[] args) {
 
-        List<Bogie> bogies = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
 
-        bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("AC Chair", 60));
-        bogies.add(new Bogie("First Class", 50));
-        bogies.add(new Bogie("Sleeper", 80));
-        bogies.add(new Bogie("AC Chair", 70));
+        System.out.print("Enter Train ID: ");
+        String trainId = scanner.nextLine();
 
-        int totalCapacity = calculateTotalCapacity(bogies);
+        System.out.print("Enter Cargo Code: ");
+        String cargoCode = scanner.nextLine();
 
-        System.out.println("Total Seating Capacity of Train: " + totalCapacity);
+        if (isValidTrainID(trainId)) {
+            System.out.println("Valid Train ID");
+        } else {
+            System.out.println("Invalid Train ID");
+        }
+
+        if (isValidCargoCode(cargoCode)) {
+            System.out.println("Valid Cargo Code");
+        } else {
+            System.out.println("Invalid Cargo Code");
+        }
+
+        scanner.close();
     }
 }
