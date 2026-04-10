@@ -1,44 +1,38 @@
 import java.util.*;
 
-class RoomInventory {
-    private HashMap<String, Integer> inventory;
+class Bogie {
+    private String name;
+    private int capacity;
 
-    public RoomInventory() {
-        inventory = new HashMap<>();
-        inventory.put("Single", 10);
-        inventory.put("Double", 5);
-        inventory.put("Suite", 2);
+    public Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
     }
 
-    public int getAvailability(String roomType) {
-        return inventory.getOrDefault(roomType, 0);
+    public String getName() {
+        return name;
     }
 
-    public void updateAvailability(String roomType, int count) {
-        inventory.put(roomType, count);
-    }
-
-    public void displayInventory() {
-        System.out.println("Current Room Inventory:");
-        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-        }
+    public int getCapacity() {
+        return capacity;
     }
 }
 
 public class TrainConsistManagementApp {
     public static void main(String[] args) {
-        System.out.println("=== Book My Stay App ===");
+        System.out.println("=== Train Consist Management App ===");
 
-        RoomInventory inventory = new RoomInventory();
+        List<Bogie> bogies = new ArrayList<>();
 
-        inventory.displayInventory();
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 40));
 
-        inventory.updateAvailability("Single", 8);
+        bogies.sort(Comparator.comparingInt(Bogie::getCapacity));
 
-        System.out.println("After Update:");
-        inventory.displayInventory();
-
-        System.out.println("Available Double Rooms: " + inventory.getAvailability("Double"));
+        System.out.println("Bogies Sorted by Capacity:");
+        for (Bogie b : bogies) {
+            System.out.println(b.getName() + " - " + b.getCapacity());
+        }
     }
 }
