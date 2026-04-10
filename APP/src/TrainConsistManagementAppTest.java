@@ -10,9 +10,9 @@ public class TrainConsistManagementAppTest {
 
     @Test
     void testRegex_InvalidTrainIDFormat() {
-        assertFalse(TrainConsistManagementApp.isValidTrainID("TRAIN12"));
-        assertFalse(TrainConsistManagementApp.isValidTrainID("TRN12A"));
-        assertFalse(TrainConsistManagementApp.isValidTrainID("1234-TRN"));
+        assertFalse(TrainConsistManagementApp.isValidTrainID("TRAIN12 "));
+        assertFalse(TrainConsistManagementApp.isValidTrainID("TRN12A "));
+        assertFalse(TrainConsistManagementApp.isValidTrainID("1234-TRN "));
     }
 
     @Test

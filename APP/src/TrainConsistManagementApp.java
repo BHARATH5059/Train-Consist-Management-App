@@ -33,9 +33,9 @@ public class TrainConsistManagementApp {
         }
 
         if (isValidCargoCode(cargoCode)) {
-            System.out.println("Valid Cargo Code");
+            System.out.println("Valid Cargo Code  ");
         } else {
-            System.out.println("Invalid Cargo Code");
+            System.out.println("Invalid Cargo Code  ");
         }
 
         scanner.close();
