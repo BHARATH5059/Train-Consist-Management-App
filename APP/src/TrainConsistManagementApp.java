@@ -1,44 +1,40 @@
 import java.util.*;
+import java.util.stream.*;
 
-class RoomInventory {
-    private HashMap<String, Integer> inventory;
+class Bogie {
+    String type;
+    int capacity;
 
-    public RoomInventory() {
-        inventory = new HashMap<>();
-        inventory.put("Single", 10);
-        inventory.put("Double", 5);
-        inventory.put("Suite", 2);
+    Bogie(String type, int capacity) {
+        this.type = type;
+        this.capacity = capacity;
     }
 
-    public int getAvailability(String roomType) {
-        return inventory.getOrDefault(roomType, 0);
-    }
-
-    public void updateAvailability(String roomType, int count) {
-        inventory.put(roomType, count);
-    }
-
-    public void displayInventory() {
-        System.out.println("Current Room Inventory:");
-        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-        }
+    public String toString() {
+        return type + " | Capacity: " + capacity;
     }
 }
 
 public class TrainConsistManagementApp {
+
+    public static int calculateTotalCapacity(List<Bogie> bogies) {
+        return bogies.stream()
+                .map(b -> b.capacity)
+                .reduce(0, Integer::sum);
+    }
+
     public static void main(String[] args) {
-        System.out.println("=== Book My Stay App ===");
 
-        RoomInventory inventory = new RoomInventory();
+        List<Bogie> bogies = new ArrayList<>();
 
-        inventory.displayInventory();
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 50));
+        bogies.add(new Bogie("Sleeper", 80));
+        bogies.add(new Bogie("AC Chair", 70));
 
-        inventory.updateAvailability("Single", 8);
+        int totalCapacity = calculateTotalCapacity(bogies);
 
-        System.out.println("After Update:");
-        inventory.displayInventory();
-
-        System.out.println("Available Double Rooms: " + inventory.getAvailability("Double"));
+        System.out.println("Total Seating Capacity of Train: " + totalCapacity);
     }
 }
