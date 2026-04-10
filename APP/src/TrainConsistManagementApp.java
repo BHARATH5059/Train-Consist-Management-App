@@ -4,17 +4,22 @@ public class TrainConsistManagemaentApp {
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
 
-        Set<String> bogieIds = new HashSet<>();
+        LinkedList<String> consist = new LinkedList<>();
 
-        bogieIds.add("BG101");
-        bogieIds.add("BG102");
-        bogieIds.add("BG103");
-        bogieIds.add("BG101");
-        bogieIds.add("BG102");
+        consist.add("Engine");
+        consist.add("Sleeper");
+        consist.add("AC");
+        consist.add("Cargo");
+        consist.add("Guard");
 
-        System.out.println("Unique Bogie IDs:");
-        for (String id : bogieIds) {
-            System.out.println(id);
+        consist.add(2, "Pantry Car");
+
+        consist.removeFirst();
+        consist.removeLast();
+
+        System.out.println("Final Train Consist:");
+        for (String bogie : consist) {
+            System.out.println(bogie);
         }
     }
 }
